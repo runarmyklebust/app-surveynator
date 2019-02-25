@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content-type>
+  <display-name>Survey</display-name>
+  <super-type>base:structured</super-type>
+  <form>
+    <input name="active" type="CheckBox">
+      <label>Active</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <alignment>left</alignment>
+      </config>
+    </input>
+    <input name="surveyPaths" type="TextLine">
+      <label>Parent paths where survey is activated</label>
+      <occurrences minimum="1" maximum="0"/>
+      <default>/</default>
+    </input>
+    <field-set name="Confirmation">
+      <label>Confirmation</label>
+      <items>
+        <input name="confirmationText" type="HtmlArea">
+          <label>Confirmation Text</label>
+          <default>Do you wish to participate in survey?</default>
+          <config/>
+        </input>
+        <input name="confirmText" type="TextLine">
+          <label>ConfirmText</label>
+          <default>OK</default>
+          <occurrences minimum="1" maximum="1"/>
+        </input>
+        <input name="rejectText" type="TextLine">
+          <label>RejectText</label>
+          <default>Cancel</default>
+          <occurrences minimum="1" maximum="1"/>
+        </input>
+      </items>
+    </field-set>
+      <item-set name="questions">
+        <label>Survey Questions</label>
+        <items>
+          <input name="questionText" type="TextLine">
+            <label>Question</label>
+            <occurrences minimum="1" maximum="1"/>
+          </input>
+          <item-set name="alternatives">
+            <label>Alternatives</label>
+            <items>
+              <input name="alternative" type="TextLine">
+                <label>Alternative</label>
+                <occurrences minimum="1" maximum="1"/>
+              </input>
+            </items>
+            <occurrences minimum="1" maximum="0"/>
+          </item-set>
+        </items>
+        <occurrences minimum="1" maximum="0"/>
+      </item-set>
+  </form>
+</content-type>
