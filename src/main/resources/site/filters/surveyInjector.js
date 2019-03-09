@@ -12,27 +12,18 @@ exports.responseFilter = function (req, res) {
         return res
     }
 
+    var svcUrl = portalLib.serviceUrl({service: 'Z'}).slice(0, -1)
+
     if (surveyLib.activeSurveys(result._path)) {
         var headEnd = initContribution(res, "headEnd");
         var bodyEnd = initContribution(res, "bodyEnd");
 
         headEnd.push(util.createCssContribution("css/survey.css"));
-        bodyEnd.push(createSurveyDiv());
-        bodyEnd.push(util.createJsContribution("js/survey.js"));
+        bodyEnd.push(util.createJsContribution("js/survey.js", [{key: "data-svcurl", value: svcUrl}]));
     }
 
     return res;
 };
-
-var createSurveyDiv = function () {
-
-    var html = "<div>";
-    html += "<h2>Here is survey</h2>"
-    html += "</div>"
-
-    return html;
-};
-
 
 var initContribution = function (res, type) {
 

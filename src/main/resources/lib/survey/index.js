@@ -17,6 +17,15 @@ exports.activeSurveys = function (path) {
     return false;
 };
 
+exports.getActiveSurvey = function (path) {
+
+    log.info("Getting active surveys");
+
+    var result = getSurveys(1, path);
+
+    return result;
+};
+
 var getSurveys = function (count, path) {
 
     var query = {

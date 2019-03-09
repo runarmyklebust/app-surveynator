@@ -63,7 +63,7 @@ exports.createCssContribution = function (styleSheetPath) {
     return '<link rel="stylesheet" type="text/css" href="' + cssAssetPath + '">';
 };
 
-exports.createJsContribution = function (jsPath) {
+exports.createJsContribution = function (jsPath, params) {
 
     var jsAssetPath = portal.assetUrl({
         path: jsPath
@@ -73,7 +73,15 @@ exports.createJsContribution = function (jsPath) {
         log.warn("Could not find js-asset: %s", jsPath);
     }
 
-    return '<script type="text/javascript" src="' + jsAssetPath + '"></script>';
+    function createParamsString() {
+        var pTags = "";
+        params.forEach(function (param) {
+            pTags += ' ' + param.key + '=' + '"' + param.value + '"'
+        });
+        return pTags;
+    }
+
+    return '<script type="text/javascript" src="' + jsAssetPath + '"' + createParamsString() + "></script>";
 };
 
 exports.getContentName = function (fullContentType) {
